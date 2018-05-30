@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.dannyflowerz.springbootreference.topic.Topic;
+import io.github.dannyflowerz.springbootreference.util.ResourceNotFoundException;
 
 @RestController
 public class CourseController {
@@ -24,7 +25,7 @@ public class CourseController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/topics/{topicId}/courses/{courseId}")
 	public Course getCourse(@PathVariable String courseId) {
-		return courseService.getCourse(courseId);
+		return courseService.getCourse(courseId).orElseThrow(ResourceNotFoundException::new);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/topics/{topicId}/courses")

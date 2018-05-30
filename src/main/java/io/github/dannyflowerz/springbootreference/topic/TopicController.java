@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.dannyflowerz.springbootreference.util.ResourceNotFoundException;
+
 @RestController
 public class TopicController {
 
@@ -22,7 +24,7 @@ public class TopicController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/topics/{id}")
 	public Topic getTopic(@PathVariable String id) {
-		return topicService.getTopic(id);
+		return topicService.getTopic(id).orElseThrow(ResourceNotFoundException::new);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/topics")

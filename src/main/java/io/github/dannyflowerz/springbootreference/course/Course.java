@@ -1,8 +1,7 @@
 package io.github.dannyflowerz.springbootreference.course;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.github.dannyflowerz.springbootreference.topic.Topic;
 import lombok.AllArgsConstructor;
@@ -15,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Document
 public class Course {
 
 	@Id
@@ -23,7 +22,7 @@ public class Course {
 	private String name;
 	private String description;
 	@Setter
-	@ManyToOne
+//	@ManyToOne
 	private Topic topic;
 
 }
