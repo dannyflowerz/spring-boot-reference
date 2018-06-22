@@ -1,11 +1,9 @@
 package io.github.dannyflowerz.springbootreference.course;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CourseService {
@@ -13,13 +11,11 @@ public class CourseService {
 	@Autowired
 	private CourseRepository courseRepository;
 	
-	public List<Course> getAllCourses(String topicId) {
-		List<Course> courses = new ArrayList<>();
-		courseRepository.findByTopicId(topicId).forEach(courses::add);
-		return courses;
+	public Flux<Course> getAllCourses(String topicId) {
+		return courseRepository.findByTopicId(topicId);
 	}
 	
-	public Optional<Course> getCourse(String id) {
+	public Mono<Course> getCourse(String id) {
 		return courseRepository.findById(id);
 	}
 

@@ -1,11 +1,10 @@
 package io.github.dannyflowerz.springbootreference.course;
 
-import java.util.List;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import reactor.core.publisher.Flux;
 
-import org.springframework.data.repository.CrudRepository;
+public interface CourseRepository extends ReactiveCrudRepository<Course, String> {
 
-public interface CourseRepository extends CrudRepository<Course, String> {
-
-	List<Course> findByTopicId(String topicId);
+	Flux<Course> findByTopicId(String topicId);
 	
 }
